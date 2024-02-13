@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -28,6 +29,7 @@ const SignUp = () => {
         setError(true);
         return;
       }
+      navigate("/sign-in");
     } catch (error) {
       setLoading(false);
       setError(true);
@@ -67,8 +69,8 @@ const SignUp = () => {
       </form>
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
-        <Link to="/sing-in">
-          <span className="text-blue-500">Sing in</span>
+        <Link to="/sign-in">
+          <span className="text-blue-500">Sign in</span>
         </Link>
       </div>
       <p className="text-red-500">{error && "Something went wrong"}</p>
